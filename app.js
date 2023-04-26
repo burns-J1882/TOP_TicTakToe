@@ -23,45 +23,54 @@ const gameBoardModule = (() => {
 
     let _playBoard = _emptyBoard;
 
-    //code to generate a board in the DOM
-    function domCache() {
+    //code to generate a board in the DOM and add click listener to each that returns its theoretical location in the array
+    const domCache = (() => {
         const boardContainer = document.createElement('div');
         boardContainer.classList.add('boardContainer');
         for (let i = 0; i < 9; i++){
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            cell.setAttribute('data-cell', i);
-            cell.appendChild(document.createTextNode(''))
-            boardContainer.appendChild(cell);
-            cell.addEventListener('click', () => {
-                console.log(cell.dataset.cell);
-            } )
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          cell.setAttribute('data-cell', i);
+          cell.appendChild(document.createTextNode(''))
+          boardContainer.appendChild(cell);
+          cell.addEventListener('click', () => {
+            const clickedSquare = cell.dataset.cell;
+            //player gamelogic function call;
+            gameLogic(clickedSquare, 'p')
+          } )
         }
-    
-    //    const filler = document.createTextNode('X');
-    //    boardContainer.appendChild(filler);
-       
-    const body = document.getElementsByTagName('body')[0];
-    const h1 = document.getElementsByTagName('h1')[0];
-    body.insertBefore(boardContainer, h1.nextSibling);
-        };
+        
+        const body = document.getElementsByTagName('body')[0];
+        const h1 = document.getElementsByTagName('h1')[0];
+        body.insertBefore(boardContainer, h1.nextSibling);
+      })();
 
-return {_emptyBoard, _playBoard, domCache}
+      function gameLogic (index, marker) {
+        //needs to update the array with player choice and dom with representation of the array
+        //take cell data value and find index in array
+        //update that index with a P (representing player)
+        console.log(index, marker);
+    }
+
+return {_emptyBoard,
+         _playBoard, 
+         init: function (){
+            domCache}
+
+        }
 })();
-gameBoardModule.domCache();
+//gameBoardModule.domCache();
 
 
 
 
-function gameLogic (index) {
-    //needs to update the array with player choice and dom with representation of the array
-    
-}
+
 
 function computerOpponent () {
     //update array with computer choice and dom with representation of the array
-    //easy
-    //hard 
+    //use a math.random to find a number between 0 and 8. 
+    //compare that number with index of array, if array index is P and any of the indexes are 0, repeat and check again. 
+    
 }
 
 
