@@ -49,7 +49,9 @@ const gameBoardModule = (() => {
         //needs to update the array with player choice and dom with representation of the array
         //take cell data value and find index in array
         //update that index with a P (representing player)
-        console.log(index, marker);
+        //console.log(index, marker);
+        _playBoard.splice(index, 1, marker)
+        //console.log(_playBoard)
     }
 
 return {_emptyBoard,
